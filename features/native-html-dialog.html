@@ -9,7 +9,7 @@
 
   <dialog id="dialog">
     <header>
-      Dialog Títle
+      Dialog Title
       <button
         id="closeDialogButton"
         type="button"
@@ -37,14 +37,21 @@
 
   showDialogButton.addEventListener("click", function() {
     dialog.showModal();
+    dialog.classList.remove("dialog-close-animation");
+    dialog.classList.add("dialog-open-animation");
   })
 
   closeDialogButton.addEventListener("click", function() {
-    dialog.close();
+    dialog.classList.remove("dialog-open-animation");
+    dialog.classList.add("dialog-close-animation");
+    setTimeout(function() {
+      dialog.close();
+    }, 200);
   })
 </script>
 <style>
   dialog {
+    opacity: 0;
     border: 0;
     padding: 2rem;
     border-radius: 0.625rem;
@@ -79,6 +86,36 @@
   dialog::backdrop {
     backdrop-filter: blur(2px);
     background: rgba(0, 0, 0, 0.5);
+  }
+
+  .dialog-open-animation {
+    animation: dialogOpenAnimation 0.2s ease-in-out forwards;
+  }
+
+  .dialog-close-animation {
+    animation: dialogCloseAnimation 0.2s ease-in-out backwards;
+  }
+
+  @keyframes dialogOpenAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes dialogCloseAnimation {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
   }
 </style>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add List Animation</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 1rem 2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #f1f5f9;
+  }
+
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  ul {
+    padding: 0;
+    & li + li {
+      margin-top: 1rem;
+    }
+
+    & li {
+      overflow: hidden;
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      color: #020617;
+      box-shadow: 0 0 0 2px #020617;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background: #f1f5f9;
+    box-shadow: 0 0 0 2px #020617;
+    color: #020617;
+    font-weight: bold;
+    cursor: pointer;
+    background: #cbd5e1;
+    transition: transform 0.2s ease-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+</style>
+<body>
+  <div class="app-container">
+    <ul class="todo-list">
+      <li class="todo-list-item">Item 1</li>
+      <li class="todo-list-item">Item 2</li>
+      <li class="todo-list-item">Item 3</li>
+      <li class="todo-list-item">Item 4</li>
+      <li class="todo-list-item">Item 5</li>
+    </ul>
+    <button type="button">Add</button>
+  </div>
+</body>
+</html>
