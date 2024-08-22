@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intersection Observer</title>
+</head>
+<style>
+  .list {
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+
+  div[class^="item-"] {
+    height: 100px;
+    background: #bae6fd;
+    border-radius: 8px;
+  }
+
+  div[class^="especial-item-"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    color: white;
+    background: #0ea5e9;
+    border-radius: 8px;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .in-view {
+    opacity: 1 !important;
+    background: #f43f5e !important;
+  }
+
+  div[class^="item-"]+div[class^="item-"],
+  div[class^="item-"]+div[class^="especial-item-"],
+  div[class^="especial-item-"]+div[class^="item-"] {
+    margin-top: 1rem;
+  }
+</style>
+
+<body>
+
+  <div class="list">
+    <div class="item-1"></div>
+    <div class="item-2"></div>
+    <div class="item-3"></div>
+    <div class="item-4"></div>
+    <div class="item-5"></div>
+    <div class="item-6"></div>
+    <div class="item-7"></div>
+    <div class="item-8"></div>
+    <div class="item-12"></div>
+    <div class="item-13"></div>
+    <div class="item-14"></div>
+    <div class="item-15"></div>
+    <div class="item-16"></div>
+    <div class="item-11"></div>
+    <div class="item-17"></div>
+    <div class="item-18"></div>
+    <div class="item-19"></div>
+    <div class="item-20"></div>
+    <div class="item-21"></div>
+    <div class="item-22"></div>
+    <div class="item-23"></div>
+    <div class="item-24"></div>
+    <div class="item-25"></div>
+    <div class="item-26"></div>
+    <div class="item-27"></div>
+    <div class="item-28"></div>
+    <div class="item-29"></div>
+    <div class="item-30"></div>
+    <div class="item-31"></div>
+    <div class="item-32"></div>
+    <div class="item-33"></div>
+    <div class="item-34"></div>
+    <div class="item-35"></div>
+    <div class="item-36"></div>
+    <div class="item-37"></div>
+    <div class="item-38"></div>
+    <div class="item-39"></div>
+    <div class="especial-item-9">
+      carregando...
+    </div>
+    <div class="item-40"></div>
+    
+  </div>
+
+</body>
+<script>
+  const rootObserver = document.getElementsByClassName("list").item(0);
+  const observerTarget = document.getElementsByClassName("especial-item-9").item(0);
+
+  const observer = new IntersectionObserver(entries => {
+    for (let entry = 0; entry < entries.length; entry++) {
+      const item = entries[entry];
+      const isInView = item.intersectionRatio === 1;
+      console.log(isInView, item);
+      if (isInView) {
+        item.target.classList.add("in-view");
+      } else {
+        item.target.classList.remove("in-view");
+      }
+    }
+  }, {
+    root: rootObserver,
+    rootMargin: "0px",
+    threshold: 1.0
+  });
+
+  observer.observe(observerTarget);
+</script>
+
+</html>

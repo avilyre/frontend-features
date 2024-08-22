@@ -2,6 +2,8 @@
 
 This project is used to register any studies related to frontend functionalities and practicies
 
+### Intersection Observer
+  - [X] List with an observed item
 
 ### Native HTML Dialog Modal
   - [X] Feature structure
